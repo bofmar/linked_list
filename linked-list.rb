@@ -18,10 +18,10 @@ class LinkedList
   end
 
   def size
-    current_node = @head
-    if current_node.next == nil
+    if @head == nil
       return 0
     end # if the list is empty return 0 as the size
+    current_node = @head
     size = 1
     while(current_node.next != nil)
       size += 1
@@ -84,11 +84,11 @@ class LinkedList
     end
     output = ""
     current_node = @head
-    while current_node.next != nil
+    loop do
       output += "( #{current_node.value} ) -> "
-      current_node = current_node.next
+      (current_node.next == nil) ? break : current_node = current_node.next
     end
-    return output += "( #{current_node.value} ) -> nil"
+    return output += "nil"
   end
 
   def insert_at value, index
