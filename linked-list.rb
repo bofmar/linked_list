@@ -18,16 +18,7 @@ class LinkedList
   end
 
   def size
-    if @head == nil
-      return 0
-    end # if the list is empty return 0 as the size
-    current_node = @head
-    size = 1
-    while(current_node.next != nil)
-      size += 1
-      current_node = current_node.next
-    end
-    size
+    return (@head.value == nil) ? 0 : (@head.next == nil) ? 1 : _size(@head)
   end
 
   def head
@@ -105,6 +96,16 @@ class LinkedList
     prev_node.next = next_node
   end
 
+  private
+
+  def _size current_node
+    if current_node.next == nil
+      return 1
+    end
+    current_node = current_node.next
+    return _size(current_node) + 1
+  end
+
 end
 
 class Node
@@ -142,6 +143,8 @@ p "SIZE"
 p list.size
 empty_list = LinkedList.new
 p empty_list.size
+one_el_list = LinkedList.new 4
+p one_el_list.size
 # -------------------------------------
 # at
 p "AT"
